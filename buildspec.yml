@@ -4,16 +4,20 @@ phases:
   install:
     runtime-versions:
       java: corretto11
+    commands:
+      - echo Entered the install phase...
+      - yum update -y
+      - yum install -y maven
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
   build:
     commands:
       - echo Build started on `date`
-	- mvn package
+      - mvn install
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - awsjavabuild/messageUtil-1.0.jar
+    - '**/*'
